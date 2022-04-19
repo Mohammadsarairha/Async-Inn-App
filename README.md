@@ -101,21 +101,27 @@ CRUD is an acronym that stands for CREATE, READ, UPDATE, and DELETE. These four 
 
 - HotelsController
     - GET: api/Hotels
+    ![GetHotel](./img/GetHotel.png)
     - GET: api/Hotels/5 by id
+    ![GetHotelById](./img/GetHotelById.png)
     - PUT: api/Hotels/5 update hotel data by id
     - POST: api/Hotels Add new hotel by id
     - DELETE: api/Hotels/5 to delete current hotel by id
 
 - RoomsController
     - GET: api/Rooms
+    ![GetRooms](./img/GetRooms.png)
     - GET: api/Rooms/5 by id
+    ![GetRoomsById](./img/GetRoomsById.png)
     - PUT: api/Rooms/5 update Room data by id
     - POST: api/Rooms Add new Room by id
     - DELETE: api/Rooms/5 to delete current Room by id
 
 - AmenitiesController
     - GET: api/Amenities
+    ![GetAmenities](./img/GetAmenities.png)
     - GET: api/Amenities/5 by id
+    ![GetAmenitiesById](./img/GetAmenitiesById.png)
     - PUT: api/Amenities/5 update Amenitie data by id
     - POST: api/Amenities Add new Amenitie by id
     - DELETE: api/Amenities/5 to delete current Amenitie by id
