@@ -101,32 +101,101 @@ CRUD is an acronym that stands for CREATE, READ, UPDATE, and DELETE. These four 
 
 - HotelsController
     - GET: api/Hotels
+    
     ![GetHotel](./img/GetHotel.png)
+
     - GET: api/Hotels/5 by id
+
     ![GetHotelById](./img/GetHotelById.png)
+
     - PUT: api/Hotels/5 update hotel data by id
     - POST: api/Hotels Add new hotel by id
     - DELETE: api/Hotels/5 to delete current hotel by id
 
 - RoomsController
     - GET: api/Rooms
+
     ![GetRooms](./img/GetRooms.png)
+
     - GET: api/Rooms/5 by id
+
     ![GetRoomsById](./img/GetRoomsById.png)
+
     - PUT: api/Rooms/5 update Room data by id
     - POST: api/Rooms Add new Room by id
     - DELETE: api/Rooms/5 to delete current Room by id
 
 - AmenitiesController
     - GET: api/Amenities
+
     ![GetAmenities](./img/GetAmenities.png)
+
     - GET: api/Amenities/5 by id
+
     ![GetAmenitiesById](./img/GetAmenitiesById.png)
+
     - PUT: api/Amenities/5 update Amenitie data by id
     - POST: api/Amenities Add new Amenitie by id
     - DELETE: api/Amenities/5 to delete current Amenitie by id
 
 > Note that all Controller inherent from base class **ControllerBase**
+
+## Repository Design Pattern
+The Repository Design Pattern its Mediates between the domain and the data mapping layers using a collection-like interface for accessing the domain objects.
+
+In other words, we can say that a Repository Design Pattern acts as a middleman or middle layer between the rest of the application and the data access logic.
+
+Here we have three layer Interfaces for all CRUD operations :
+
+- Hotel interface
+
+```C#
+Task<Hotel> Create(Hotel hotel);
+
+        Task<List<Hotel>> GetHotels();
+
+        Task<Hotel> GetHotel(int id);
+
+        Task<Hotel> UpdateHotel(int id , Hotel hotel);
+
+        Task DeleteHotel(int id);
+```
+
+- Room interface
+
+```C#
+Task<Room> Create(Room room);
+
+        Task<List<Room>> GetRooms();
+
+        Task<Room> GetRoom(int id);
+
+        Task<Room> UpdateRoom(int id, Room room);
+
+        Task DeleteRoom(int id);
+```
+
+- IAmenitie interface
+
+```C#
+Task<Amenity> Create(Amenity amenity);
+
+        Task<List<Amenity>> GetAmenities();
+
+        Task<Amenity> GetAmenity(int id);
+
+        Task<Amenity> UpdateAmenity(int id, Amenity amenity);
+
+        Task DeleteAmenity(int id);
+```
+
+- Finlly need to add services fro all layers in **startup.cs** class
+
+```C#
+services.AddTransient<IHotel, HotelServices>();
+            services.AddTransient<IRoom, RoomServices>();
+            services.AddTransient<IAmenitie, AmenitieServices>();
+```
 
 ## Code Reference
 
