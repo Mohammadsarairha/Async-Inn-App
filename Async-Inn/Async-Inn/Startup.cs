@@ -34,8 +34,12 @@ namespace Async_Inn
             services.AddTransient<IHotel, HotelServices>();
             services.AddTransient<IRoom, RoomServices>();
             services.AddTransient<IAmenitie, AmenitieServices>();
+            services.AddTransient<IHotelRoom, HotelRoomServices>();
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(opt =>
+            opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,7 +56,7 @@ namespace Async_Inn
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("Async-Inn-API!");
+                    await context.Response.WriteAsync("Async-Inn-API");
                 });
 
                 endpoints.MapControllers();

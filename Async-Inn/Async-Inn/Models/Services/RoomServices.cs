@@ -2,6 +2,7 @@
 using Async_Inn.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Async_Inn.Models.Services
@@ -25,16 +26,22 @@ namespace Async_Inn.Models.Services
        
         public async Task<Room> GetRoom(int id)
         {
-            Room room = await _context.Rooms.FindAsync(id);
+            //Room room = await _context.Rooms.FindAsync(id);
+            //return room;
 
-            return room;
+            return await _context.Rooms.Include(ra => ra.RoomAmenities)
+                                       .ThenInclude(a => a.Amenity)
+                                       .FirstAsync(x => x.Id == id);
         }
 
         public async Task<List<Room>> GetRooms()
         {
-            var rooms = await _context.Rooms.ToListAsync();
+            //var rooms = await _context.Rooms.ToListAsync();
+            //return rooms;
 
-            return rooms;
+            return await _context.Rooms.Include(ra => ra.RoomAmenities)
+                                       .ThenInclude(a => a.Amenity)
+                                       .ToListAsync();
         }
 
         public async Task<Room> UpdateRoom(int id, Room room)
@@ -53,6 +60,29 @@ namespace Async_Inn.Models.Services
             _context.Entry(room).State = EntityState.Deleted;
 
             await _context.SaveChangesAsync();
+        }
+
+        public async Task AddAmenityToRoom(int roomId, int amenityId)
+        {
+            RoomAmenity roomAmenity = new RoomAmenity
+            {
+                RoomId = roomId,
+                AmenityId = amenityId
+            };
+
+            _context.Entry(roomAmenity).State = EntityState.Added;
+
+            await _context.SaveChangesAsync();
+
+        }
+
+        public async Task RemoveAmentityFromRoom(int roomId, int amenityId)
+        {
+            RoomAmenity roomAmenity = await _context.RoomAmenities
+                                            .Where(Rm => Rm.RoomId == roomId && Rm.AmenityId == amenityId)
+                                            .FirstAsync();
+            _context.Entry(roomAmenity).State = EntityState.Deleted;
+            _context.SaveChanges();
         }
     }
 }
