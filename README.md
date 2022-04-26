@@ -196,6 +196,90 @@ services.AddTransient<IHotel, HotelServices>();
             services.AddTransient<IRoom, RoomServices>();
             services.AddTransient<IAmenitie, AmenitieServices>();
 ```
+## Navigation Properties 
+
+Add Navigation Properties to relation table (RoomAmenity , HotelRoom)
+
+- RoomAmenity
+
+```C#
+public class RoomAmenity
+    {
+        public int RoomId { get; set; }
+        public int AmenityId { get; set; }
+
+        // Navigation Properties
+
+        public Room Room { get; set; }
+        public Amenity Amenity { get; set; }
+    }
+```
+- HotelRoom
+
+```C#
+public class HotelRoom
+    {
+        public int HotelId { get; set; }
+        public int RoomNumber { get; set; }
+        public int RoomId { get; set; }
+        public decimal Rate { get; set; }
+        public int PetFrienndly { get; set; }
+
+
+        // Navigation Properties
+
+        public Hotel Hotel { get; set; }
+        public Room Room { get; set; }
+    }
+```
+
+## Routing
+
+Add specific Routing for all CRUD operations for relation table to get data between tow table
+
+- Add new Amenity To specific Room in this following EndPoint : **api/Rooms/5/Amenity/5**
+
+```C#
+ // POST : api/Rooms/5/Amenity/5
+        [HttpPost]
+        [Route("{roomId}/Amenity/{amenityId}")]
+        public async Task<IActionResult> AddAmenityToRoom(int roomId, int amenityId)
+        {
+            await _room.AddAmenityToRoom(roomId, amenityId);
+
+            return NoContent();
+        }
+```
+- Add Amenity To Room with stutus : 204 NoContent
+
+![AddAmenityToRoom](./img/POST-AddAmenityToRoom.png)
+
+- After Add Amenity To Room
+
+![ResultAddAmenityToRoom](./img/Result-AddAmenityToRoom.png)
+
+- Remove old Amentity From specific Room in this following EndPoint : **api/Rooms/5/Amenity/5**
+
+```C#
+// DELETE : api/Rooms/5/Amenity/5
+        [HttpDelete]
+        [Route("{roomId}/Amenity/{amenityId}")]
+        public async Task<IActionResult> RemoveAmentityFromRoom(int roomId, int amenityId)
+        {
+            await _room.RemoveAmentityFromRoom(roomId,amenityId);
+
+            return NoContent();
+        }
+```
+- Delete Amenity from Room with stutus : 204 NoContent
+
+![Delete-AmenityFromRoom](./img/Delete-AmenityFromRoom.png)
+
+- After Delete Amenity from Room
+
+![Result-DeleteAmenityFromRoom](./img/Result-DeleteAmenityFromRoom.png)
+
+
 
 ## Code Reference
 
