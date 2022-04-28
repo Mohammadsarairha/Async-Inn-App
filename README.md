@@ -279,7 +279,25 @@ Add specific Routing for all CRUD operations for relation table to get data betw
 
 ![Result-DeleteAmenityFromRoom](./img/Result-DeleteAmenityFromRoom.png)
 
+## HotelRoom Controller 
 
+Modify the routes for all CURD operations in this controller for the following:
+
+- GET all the rooms for a hotel: /api/HotelRooms/{hotelId}/Rooms
+![GETRoomsForHotel](./img/Get-RoomsForHotel.png)
+
+- GET all room details for a specific room: /api/HotelRooms/{hotelId}/Rooms/{roomNumber}
+
+![GETSpecificRoomHotel](./img/Get-SpecificRoomHotel.png)
+
+- POST to add a room to a hotel: /api/HotelRooms/{hotelId}/Rooms
+![POSTHotelRoom](./img/Post-HotelRoom.png)
+
+- PUT update the details of a specific room: /api/HotelRooms/{hotelId}/Rooms/{roomNumber}
+![PUTSpecificRoomHotel](./img/Put-Update-SpecificRoomHotel.png)
+
+- DELETE a specific room from a hotel: /api/HotelRooms/{hotelId}/Rooms/{roomNumber}
+![Delete-SpecificRoomHotel](./img/Delete-SpecificRoomHotel.png)
 
 ## Code Reference
 
