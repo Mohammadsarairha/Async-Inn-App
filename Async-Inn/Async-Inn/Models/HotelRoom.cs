@@ -8,7 +8,6 @@
         public decimal Rate { get; set; }
         public int PetFrienndly { get; set; }
 
-
         // Navigation Properties
 
         public Hotel Hotel { get; set; }
