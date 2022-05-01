@@ -1,17 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using Async_Inn.Models.DTO;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Async_Inn.Models.Interfaces
 {
     public interface IAmenitie
     {
-        Task<Amenity> Create(Amenity amenity);
+        Task<AmenityDTO> Create(Amenity amenity);
 
-        Task<List<Amenity>> GetAmenities();
+        Task<List<AmenityDTO>> GetAmenities();
 
-        Task<Amenity> GetAmenity(int id);
+        Task<AmenityDTO> GetAmenity(int id);
 
-        Task<Amenity> UpdateAmenity(int id, Amenity amenity);
+        Task<AmenityDTO> UpdateAmenity(int id, AmenityDTO amenity);
 
         Task DeleteAmenity(int id);
     }
