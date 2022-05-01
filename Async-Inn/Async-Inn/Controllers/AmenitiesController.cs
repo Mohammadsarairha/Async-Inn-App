@@ -9,6 +9,7 @@ using Async_Inn.Data;
 using Async_Inn.Models;
 using Async_Inn.Models.Services;
 using Async_Inn.Models.Interfaces;
+using Async_Inn.Models.DTO;
 
 namespace Async_Inn.Controllers
 {
@@ -25,16 +26,16 @@ namespace Async_Inn.Controllers
 
         // GET: api/Amenities
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Amenity>>> GetAmenities()
+        public async Task<ActionResult<IEnumerable<AmenityDTO>>> GetAmenities()
         {
             var amenities = await _amenity.GetAmenities();
 
             return Ok(amenities);
         }
-
+ 
         // GET: api/Amenities/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Amenity>> GetAmenity(int id)
+        public async Task<ActionResult<AmenityDTO>> GetAmenity(int id)
         {
             var amenity = await _amenity.GetAmenity(id);
 
@@ -44,14 +45,14 @@ namespace Async_Inn.Controllers
         // PUT: api/Amenities/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAmenity(int id, Amenity amenity)
+        public async Task<IActionResult> PutAmenity(int id, AmenityDTO amenity)
         {
             if (id != amenity.Id)
             {
                 return BadRequest();
             }
 
-            Amenity modifiedAmenity = await _amenity.UpdateAmenity(id, amenity);
+            AmenityDTO modifiedAmenity = await _amenity.UpdateAmenity(id, amenity);
 
             return Ok(modifiedAmenity);
         }
@@ -59,9 +60,9 @@ namespace Async_Inn.Controllers
         // POST: api/Amenities
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Amenity>> PostAmenity(Amenity amenity)
+        public async Task<ActionResult<AmenityDTO>> PostAmenity(Amenity amenity)
         {
-            Amenity newAmenity = await _amenity.Create(amenity);
+            AmenityDTO newAmenity = await _amenity.Create(amenity);
 
             return Ok(newAmenity);
         }

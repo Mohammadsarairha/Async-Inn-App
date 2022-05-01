@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using Async_Inn.Models.DTO;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Async_Inn.Models.Interfaces
 {
     public interface IHotelRoom
     {
-        Task <List<HotelRoom>> GetHotelRooms(int hotelId);
+        Task <List<HotelRoomDTO>> GetHotelRooms(int hotelId);
 
-        Task<HotelRoom> AddRoomToHotel(int hotelId,HotelRoom hr);
+        Task<HotelRoomDTO> AddRoomToHotel(int hotelId,HotelRoom hr);
 
         Task<HotelRoom> RoomDetails(int hotelId, int roomNumber);
 

@@ -1,17 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using Async_Inn.Models.DTO;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Async_Inn.Models.Interfaces
 {
     public interface IRoom
     {
-        Task<Room> Create(Room room);
+        Task<RoomDTO> Create(Room room);
 
-        Task<List<Room>> GetRooms();
+        Task<List<RoomDTO>> GetRooms();
 
-        Task<Room> GetRoom(int id);
+        Task<RoomDTO> GetRoom(int id);
 
-        Task<Room> UpdateRoom(int id, Room room);
+        Task<RoomDTO> UpdateRoom(int id, Room room);
 
         Task DeleteRoom(int id);
 

@@ -9,6 +9,7 @@ using Async_Inn.Data;
 using Async_Inn.Models;
 using Async_Inn.Models.Services;
 using Async_Inn.Models.Interfaces;
+using Async_Inn.Models.DTO;
 
 namespace Async_Inn.Controllers
 {
@@ -25,7 +26,7 @@ namespace Async_Inn.Controllers
 
         // GET: api/Hotels
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Hotel>>> GetHotels()
+        public async Task<ActionResult<IEnumerable<HotelRoomDTO>>> GetHotels()
         {
             var hotels = await _hotel.GetHotels();
 
@@ -34,9 +35,9 @@ namespace Async_Inn.Controllers
 
         // GET: api/Hotels/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Hotel>> GetHotel(int id)
+        public async Task<ActionResult<HotelDTO>> GetHotel(int id)
         {
-            Hotel hotel = await _hotel.GetHotel(id);
+            HotelDTO hotel = await _hotel.GetHotel(id);
 
             return Ok(hotel);
         }
@@ -51,7 +52,7 @@ namespace Async_Inn.Controllers
                 return BadRequest();
             }
 
-            Hotel modifiedHotel = await _hotel.UpdateHotel(id, hotel);
+            HotelDTO modifiedHotel = await _hotel.UpdateHotel(id, hotel);
 
             return Ok(modifiedHotel);
         }
@@ -61,7 +62,7 @@ namespace Async_Inn.Controllers
         [HttpPost]
         public async Task<ActionResult<Hotel>> PostHotel(Hotel hotel)
         {
-            Hotel newHotel = await _hotel.Create(hotel);
+            HotelDTO newHotel = await _hotel.Create(hotel);
 
             return Ok(newHotel);
         }
