@@ -19,15 +19,17 @@ namespace Async_Inn.Models.Services
 
         public async Task<RoomDTO> Create(Room room)
         {
+            _context.Entry(room).State = EntityState.Added;
+
+            await _context.SaveChangesAsync();
+
             RoomDTO roomDTO = new RoomDTO
             {
                 Id = room.Id,
                 Name = room.Name,
                 Layout = room.Layout
             };
-            _context.Entry(room).State = EntityState.Added;
-
-            await _context.SaveChangesAsync();
+            
             return roomDTO;
         }
        
