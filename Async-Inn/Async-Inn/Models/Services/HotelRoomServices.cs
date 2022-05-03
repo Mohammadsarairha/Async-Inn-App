@@ -19,7 +19,7 @@ namespace Async_Inn.Models.Services
 
         public async Task<HotelRoomDTO> AddRoomToHotel(int hotelId,HotelRoom hotelRoom)
         {
-            _context.Entry(room).State = EntityState.Added;
+            _context.Entry(hotelRoom).State = EntityState.Added;
 
             await _context.SaveChangesAsync();
 
@@ -31,7 +31,7 @@ namespace Async_Inn.Models.Services
                 PetFriendly = hotelRoom.PetFrienndly,
                 RoomID = hotelRoom.RoomId
             };
-            
+
             return room;
         }
 

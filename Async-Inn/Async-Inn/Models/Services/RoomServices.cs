@@ -19,6 +19,7 @@ namespace Async_Inn.Models.Services
 
         public async Task<RoomDTO> Create(Room room)
         {
+            
             _context.Entry(room).State = EntityState.Added;
 
             await _context.SaveChangesAsync();
@@ -29,7 +30,7 @@ namespace Async_Inn.Models.Services
                 Name = room.Name,
                 Layout = room.Layout
             };
-            
+
             return roomDTO;
         }
        
