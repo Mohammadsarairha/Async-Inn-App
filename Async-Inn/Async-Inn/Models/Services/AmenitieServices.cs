@@ -19,17 +19,17 @@ namespace Async_Inn.Models.Services
 
         public async Task<AmenityDTO> Create(Amenity amenity)
         {
-            _context.Entry(amenityDTO).State = EntityState.Added;
+            _context.Entry(amenity).State = EntityState.Added;
 
             await _context.SaveChangesAsync();
-            
-            AmenityDTO amenityDTO = new AmenityDTO
+
+            AmenityDTO amenityDto = new AmenityDTO
             {
                 Id = amenity.Id,
-                Name = amenity.Name,
+                Name = amenity.Name
             };
 
-            return amenityDTO;
+            return amenityDto;
         }
         public async Task<AmenityDTO> GetAmenity(int id)
         {
@@ -61,17 +61,16 @@ namespace Async_Inn.Models.Services
 
         public async Task<AmenityDTO> UpdateAmenity(int id, Amenity amenity)
         {
-            AmenityDTO amenityDTO = new AmenityDTO
+            AmenityDTO amenityDto = new AmenityDTO
             {
                 Id = amenity.Id,
-                Name = amenity.Name,
+                Name = amenity.Name
             };
-            
             _context.Entry(amenity).State = EntityState.Modified;
 
             await _context.SaveChangesAsync();
 
-            return amenityDTO;
+            return amenityDto;
         }
 
         public async Task DeleteAmenity(int id)

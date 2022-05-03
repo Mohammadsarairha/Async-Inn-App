@@ -19,6 +19,7 @@ namespace Async_Inn.Models.Services
 
         public async Task<HotelDTO> Create(Hotel hotel)
         {
+            
             _context.Entry(hotel).State = EntityState.Added;
             
             await _context.SaveChangesAsync();
