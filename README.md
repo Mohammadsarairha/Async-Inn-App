@@ -479,6 +479,36 @@ Test your routes on Postman as well as Swagger to confirm you are getting the co
 
 ![GetAmenities](./img/SwaggerGetAmenities.png)
 
+## Identity
+
+ASP.NET Core Identity provides a framework for managing and storing user accounts in ASP.NET Core apps. Identity is added to your project when Individual User Accounts is selected as the authentication mechanism. By default, Identity makes use of an Entity Framework (EF) Core data model
+
+- Register 
+
+![Register](./img/RegisterNewUser.png)
+
+- Login
+
+![Login](./img/LoginUser.png)
+
+Register Validations
+
+- Password validation
+
+![Password](./img/PasswordValidation.png)
+
+- Username validation
+
+![Username](./img/RegisterNameValidation.png)
+
+- User Not found 
+
+![UserNotFound](./img/UserNotFound.png)
+
+- Email validation
+
+![Email](./img/RegisterNameValidation.png)
+
 
 ## Code Reference
 

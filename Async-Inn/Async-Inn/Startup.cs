@@ -1,9 +1,11 @@
 using Async_Inn.Data;
+using Async_Inn.Models;
 using Async_Inn.Models.Interfaces;
 using Async_Inn.Models.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +30,12 @@ namespace Async_Inn
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+                options.Password.RequireDigit = false;
+            }).AddEntityFrameworkStores<AsyncInnDbContext>();
+
             services.AddDbContext<AsyncInnDbContext>(options => {
                 string connectionString = Configuration.GetConnectionString("DefaultConnection");
                 options.UseSqlServer(connectionString);
@@ -36,6 +44,7 @@ namespace Async_Inn
             services.AddTransient<IRoom, RoomServices>();
             services.AddTransient<IAmenitie, AmenitieServices>();
             services.AddTransient<IHotelRoom, HotelRoomServices>();
+            services.AddTransient<IUserService, IdentityUserService>();
 
             services.AddControllers().AddNewtonsoftJson(opt =>
             opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
