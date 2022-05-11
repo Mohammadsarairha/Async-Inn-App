@@ -9,7 +9,7 @@ namespace HotelDemoTest
     public class UnitTest1 : Mock
     {
         [Fact]
-        public async Task Can_enroll_and_drop_a_Room()
+        public async Task Can_enroll_and_drop_a_student()
         {
             // Arrange
             var room = await CreateAndSaveTestRoom();
