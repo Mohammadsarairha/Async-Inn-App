@@ -9,6 +9,7 @@ using Async_Inn.Data;
 using Async_Inn.Models;
 using Async_Inn.Models.Interfaces;
 using Async_Inn.Models.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Async_Inn.Controllers
 {
@@ -23,6 +24,7 @@ namespace Async_Inn.Controllers
             _HotelRoom = hotelRoom;
         }
         // GET: api/HotelRooms/1/Rooms
+        [Authorize(Policy = "read")]
         [HttpGet]
         [Route ("{hotelId}/Rooms")]
         public async Task<ActionResult<HotelRoomDTO>> GetHotelRooms(int hotelId)
@@ -32,6 +34,7 @@ namespace Async_Inn.Controllers
         }
 
         // POST: api/HotelRooms/1/Rooms
+        [Authorize(Policy = "create")]
         [HttpPost]
         [Route("{hotelId}/Rooms")]
         public async Task<ActionResult<HotelRoomDTO>> PostHotelRoom(int hotelId, HotelRoom hr)
@@ -41,6 +44,7 @@ namespace Async_Inn.Controllers
         }
         // GET: api/HotelRooms/1/Rooms/1
         [HttpGet]
+        [Authorize(Policy = "read")]
         [Route("{hotelId}/Rooms/{roomNumber}")]
         public async Task<IActionResult> GetRoomDetails(int hotelId, int roomNumber)
         {
@@ -50,6 +54,7 @@ namespace Async_Inn.Controllers
         }
 
         // PUT: api/HotelRooms/1/Rooms/1
+        [Authorize(Policy = "update")]
         [HttpPut]
         [Route("{hotelId}/Rooms/{roomNumber}")]
         public async Task<IActionResult> PutHotelRoom(int hotelId, int roomNumber, HotelRoom hr)
@@ -59,6 +64,7 @@ namespace Async_Inn.Controllers
         }
 
         // DELETE: api/HotelRooms/5/1
+        [Authorize(Policy = "delete")]
         [HttpDelete]
         [Route("{hotelId}/Rooms/{roomNumber}")]
         public async Task<IActionResult> DeleteHotelRoom(int hotelId, int roomNumber)

@@ -1,5 +1,6 @@
 ﻿using Async_Inn.Models.api;
 using Async_Inn.Models.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace Async_Inn.Controllers
         {
             _userService = userService;
         }
-
+        [AllowAnonymous]
         [HttpPost("Register")]
         public async Task<ActionResult<UserDto>> Register([FromBody]RegisterUser registerUser)
         {
@@ -35,6 +36,7 @@ namespace Async_Inn.Controllers
                 return BadRequest(e.Message);
             }
         }
+        [AllowAnonymous]
         [HttpPost("Login")]
         public async Task<ActionResult<UserDto>> Login(LoginData loginData)
         {
