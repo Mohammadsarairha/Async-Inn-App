@@ -2,6 +2,11 @@
 using Async_Inn.Models.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Async_Inn.Models.Services
@@ -9,10 +14,12 @@ namespace Async_Inn.Models.Services
     public class IdentityUserService : IUserService
     {
         private UserManager<ApplicationUser> _userManager;
+        private JwtTokenService _tokenService;
 
-        public IdentityUserService(UserManager<ApplicationUser> manager)
+        public IdentityUserService(UserManager<ApplicationUser> manager, JwtTokenService jwtTokenService)
         {
             _userManager = manager;
+            _tokenService = jwtTokenService;
         }
 
         public async Task<UserDto> Authenticate(string username, string password)
@@ -28,6 +35,8 @@ namespace Async_Inn.Models.Services
                     {
                         Id = user.Id,
                         Username = user.UserName,
+                        Token = await _tokenService.GetToken(user, System.TimeSpan.FromMinutes(15)),
+                        Roles = await _userManager.GetRolesAsync(user)
                     };
                     return userDto;
                 }
@@ -49,10 +58,15 @@ namespace Async_Inn.Models.Services
 
             if (result.Succeeded)
             {
+                IList<string> Roles = new List<string>();
+                Roles.Add("Administrator");
+                await _userManager.AddToRolesAsync(user, Roles);
                 UserDto userDto = new UserDto
                 {
                     Id = user.Id,
                     Username = user.UserName,
+                    Token = await _tokenService.GetToken(user, System.TimeSpan.FromMinutes(15)),
+                    Roles = await _userManager.GetRolesAsync(user)
                 };
                 return userDto;
             }
@@ -67,6 +81,15 @@ namespace Async_Inn.Models.Services
                 modelstate.AddModelError(errorKey, error.Description);
             }
             return null;
+        }
+        public async Task<UserDto> GetUser(ClaimsPrincipal principal)
+        {
+            var user = await _userManager.GetUserAsync(principal);
+            return new UserDto
+            {
+                Id = user.Id,
+                Username = user.UserName
+            };
         }
     }
 }

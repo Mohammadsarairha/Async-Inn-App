@@ -1,6 +1,9 @@
 ﻿using Async_Inn.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using System;
+using System.Linq;
 
 namespace Async_Inn.Data
 {
@@ -38,6 +41,11 @@ namespace Async_Inn.Data
                 new Amenity { Id = 2, Name = "Ocean view" },
                 new Amenity { Id = 3, Name = "Air conditioning" }
                 );
+            SeedRoles(modelBuilder, "DistrictManager", "create","update","delete","read");
+            SeedRoles(modelBuilder, "PropertyManager", "create", "update","read");
+            SeedRoles(modelBuilder, "Agent", "update","read");
+            SeedRoles(modelBuilder, "AnonymousUsers", "read");
+
             modelBuilder.Entity<RoomAmenity>().HasKey(
                 roomAmenity => new {roomAmenity.RoomId , roomAmenity.AmenityId}
                 );
@@ -45,6 +53,29 @@ namespace Async_Inn.Data
             modelBuilder.Entity<HotelRoom>().HasKey(
                 hotelRoom => new { hotelRoom.HotelId, hotelRoom.RoomId }
                 );
+        }
+
+        private int id = 1;
+        private void SeedRoles(ModelBuilder modelBuilder ,string roleName , params string[] permissions)
+        {
+            var role = new IdentityRole
+            {
+                Id =roleName.ToLower(), 
+                Name = roleName,
+                NormalizedName = roleName.ToUpper(),
+                ConcurrencyStamp = Guid.Empty.ToString()
+            };
+            modelBuilder.Entity<IdentityRole>().HasData(role);
+            var RoleClaims = permissions.Select(permissions => 
+            new IdentityRoleClaim<string>
+            {
+                Id = id++,
+                RoleId = role.Id,
+                ClaimType= "persmissions",
+                ClaimValue = permissions
+            }).ToArray();
+
+            modelBuilder.Entity<IdentityRoleClaim<string>>().HasData(RoleClaims);
         }
     }
 }

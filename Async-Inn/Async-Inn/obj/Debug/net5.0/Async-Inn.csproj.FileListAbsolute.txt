@@ -269,3 +269,4 @@ C:\Users\HP\source\repos\Async-Inn-App\Async-Inn\Async-Inn\bin\Debug\net5.0\Micr
 C:\Users\HP\source\repos\Async-Inn-App\Async-Inn\Async-Inn\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\HP\source\repos\Async-Inn-App\Async-Inn\Async-Inn\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\HP\source\repos\Async-Inn-App\Async-Inn\Async-Inn\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\HP\Source\Repos\Async-Inn-App\Async-Inn\Async-Inn\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

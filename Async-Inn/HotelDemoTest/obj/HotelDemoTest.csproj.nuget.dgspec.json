@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HP\\source\\repos\\Async-Inn-App\\Async-Inn\\HotelDemoTest\\HotelDemoTest.csproj": {}
+    "C:\\Users\\HP\\Source\\Repos\\Async-Inn-App\\Async-Inn\\HotelDemoTest\\HotelDemoTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HP\\source\\repos\\Async-Inn-App\\Async-Inn\\Async-Inn\\Async-Inn.csproj": {
+    "C:\\Users\\HP\\Source\\Repos\\Async-Inn-App\\Async-Inn\\Async-Inn\\Async-Inn.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\source\\repos\\Async-Inn-App\\Async-Inn\\Async-Inn\\Async-Inn.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\Source\\Repos\\Async-Inn-App\\Async-Inn\\Async-Inn\\Async-Inn.csproj",
         "projectName": "Async-Inn",
-        "projectPath": "C:\\Users\\HP\\source\\repos\\Async-Inn-App\\Async-Inn\\Async-Inn\\Async-Inn.csproj",
+        "projectPath": "C:\\Users\\HP\\Source\\Repos\\Async-Inn-App\\Async-Inn\\Async-Inn\\Async-Inn.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\source\\repos\\Async-Inn-App\\Async-Inn\\Async-Inn\\obj\\",
+        "outputPath": "C:\\Users\\HP\\Source\\Repos\\Async-Inn-App\\Async-Inn\\Async-Inn\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.16, )"
@@ -89,14 +93,14 @@
         }
       }
     },
-    "C:\\Users\\HP\\source\\repos\\Async-Inn-App\\Async-Inn\\HotelDemoTest\\HotelDemoTest.csproj": {
+    "C:\\Users\\HP\\Source\\Repos\\Async-Inn-App\\Async-Inn\\HotelDemoTest\\HotelDemoTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\source\\repos\\Async-Inn-App\\Async-Inn\\HotelDemoTest\\HotelDemoTest.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\Source\\Repos\\Async-Inn-App\\Async-Inn\\HotelDemoTest\\HotelDemoTest.csproj",
         "projectName": "HotelDemoTest",
-        "projectPath": "C:\\Users\\HP\\source\\repos\\Async-Inn-App\\Async-Inn\\HotelDemoTest\\HotelDemoTest.csproj",
+        "projectPath": "C:\\Users\\HP\\Source\\Repos\\Async-Inn-App\\Async-Inn\\HotelDemoTest\\HotelDemoTest.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\source\\repos\\Async-Inn-App\\Async-Inn\\HotelDemoTest\\obj\\",
+        "outputPath": "C:\\Users\\HP\\Source\\Repos\\Async-Inn-App\\Async-Inn\\HotelDemoTest\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -113,8 +117,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\HP\\source\\repos\\Async-Inn-App\\Async-Inn\\Async-Inn\\Async-Inn.csproj": {
-                "projectPath": "C:\\Users\\HP\\source\\repos\\Async-Inn-App\\Async-Inn\\Async-Inn\\Async-Inn.csproj"
+              "C:\\Users\\HP\\Source\\Repos\\Async-Inn-App\\Async-Inn\\Async-Inn\\Async-Inn.csproj": {
+                "projectPath": "C:\\Users\\HP\\Source\\Repos\\Async-Inn-App\\Async-Inn\\Async-Inn\\Async-Inn.csproj"
               }
             }
           }
